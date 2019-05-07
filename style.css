@@ -1,0 +1,141 @@
+* {
+				box-sizing: border-box;
+				margin: 0;
+				padding: 0;
+			}
+			
+body{
+  	display: flex;
+  	flex-direction: column;
+	justify-content: center;
+  	align-items: center;
+	font-size: 22px;
+	font-family: 'Roboto', sans-serif;
+	color: #000;
+  	font-weight: 300;
+  	text-align: center;
+  	background-color: #fff;
+}
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  font-weight: 300;
+  padding: 10px;
+  font-size: 14px;
+  background-color: #444;
+  color: #fff;
+}
+/* responsive image - media queries */
+.logo {
+  max-width: 15%;
+  height: auto;
+  position: fixed;
+  bottom: 30px;
+  left: 0;
+  }
+a { 
+	color: #fff;
+}
+header{
+  font-weight: 300;
+  padding: 8px;
+  font-size: 10px;
+  background-color: #444;
+  color: #fff;
+  width: 100%;
+}
+@media only screen and (min-width: 600px) {
+  /* For tablets: */
+    header {
+    font-size:10px;
+  }
+}
+@media only screen and (min-width: 768px) {
+  /* For desktop: */
+    header {
+    font-size: 14px;
+  }
+}
+
+/* for javascript only */
+.js-quiz-container {
+}
+
+.banner {
+	font-size: 16px;
+	margin-top: 20px;
+  	display: flex;
+  	flex-direction: row;
+	justify-content: space-around;
+}
+
+/* for javascript only, may not be needed */
+.js-question-out-of {
+}
+.js-score {
+}
+
+.message {
+  font-weight: bold;
+  font-size: 40px;
+  color: #444;
+  margin-top: 40px;
+}
+
+fieldset {
+    border: 0;
+}
+
+.question {
+  font-weight: bold;
+  color: #444;
+  margin-top: 40px;
+}
+.question label {
+  color: #000;
+}
+
+/* ul */
+.answers {
+  list-style: none;
+  margin: 0px auto;
+  padding: 0px 40px;
+  font-size: 18px;
+  width: 70%;
+  text-align:left;
+}
+
+.answers li {
+  margin-top: 5px auto;
+  padding: 10px;
+}
+.answers input[type="radio"] {
+  margin-right: 10px;
+}
+
+.warning {
+position: relative;
+left: 5px;
+font-variant: small-caps;
+}
+.correct-answer {
+	color: #008000;
+}
+.your-answer {
+	color: blue;
+}
+button {
+ 	font-family: 'Roboto', sans-serif;
+	background-color: goldenrod;
+	color: #fff;
+	border: 0px;
+	border-radius: 3px;
+	padding: 20px;
+	cursor: pointer;
+	margin: 40px auto; 
+}
+button:hover{
+	background-color: gold;
+}
