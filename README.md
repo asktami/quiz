@@ -1,5 +1,7 @@
 # jQuery Quiz Challenge
 
+[View in GitHub pages](https://asktami.github.io/quiz/)
+
 This repo contains files for the *Quiz App* challenge.
 
 
