@@ -30,7 +30,7 @@ Technical requirements
 
 Your quiz app must:
 
-- Render answer choices in a <form>.
+- Render answer choices in a form.
 
 - Use semantic HTML, along with CSS and jQuery.
 
