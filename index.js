@@ -168,7 +168,7 @@ function restartQuiz() {
 
 
 
-// **QUESTION - why do I get on last page: Form submission canceled because the form is not connected AFTER click CONTINUE on last RESULTS page IF I use g???
+// **QUESTION - why do I get on last page: Form submission canceled because the form is not connected AFTER click CONTINUE on last RESULTS page IF I use main???
 // **QUESTION - why does #message not work, but main works??? (except see above)
 // tried div#message, #message AND replaceWith
 
