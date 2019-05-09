@@ -1,5 +1,7 @@
 # jQuery Quiz Challenge
 
+[View in GitHub pages](https://asktami.github.io/quiz/)
+
 This repo contains files for the *Quiz App* challenge.
 
 
@@ -28,7 +30,7 @@ Technical requirements
 
 Your quiz app must:
 
-- Render answer choices in a <form>.
+- Render answer choices in a form.
 
 - Use semantic HTML, along with CSS and jQuery.
 
