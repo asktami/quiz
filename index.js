@@ -158,7 +158,7 @@ function startQuiz() {
 // user clicks restart
 // reload page to restart quiz
 
-// QUESTION = why doesn't the RESTART button work?
+// **QUESTION = why doesn't the RESTART button work?
 // MAIN _is_ in the DOM when the page 1st loads
 function restartQuiz() {
 	$('main').on('click', '.restart', function(event) {
@@ -168,8 +168,8 @@ function restartQuiz() {
 
 
 
-// QUESTION - why do I get on last page: Form submission canceled because the form is not connected AFTER click CONTINUE on last RESULTS page IF I use g???
-// QUESTION - why does #message not work, but main works??? (except see above)
+// **QUESTION - why do I get on last page: Form submission canceled because the form is not connected AFTER click CONTINUE on last RESULTS page IF I use g???
+// **QUESTION - why does #message not work, but main works??? (except see above)
 // tried div#message, #message AND replaceWith
 
 function renderLastPage() {
