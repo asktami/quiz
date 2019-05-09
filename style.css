@@ -5,10 +5,6 @@
 			}
 			
 body{
-  	display: flex;
-  	flex-direction: column;
-	justify-content: center;
-  	align-items: center;
 	font-size: 22px;
 	font-family: 'Roboto', sans-serif;
 	color: #000;
@@ -38,29 +34,19 @@ footer {
 a { 
 	color: #fff;
 }
-header{
+header h1{
   font-weight: 300;
-  padding: 8px;
-  font-size: 10px;
+  padding: 10px;
+  font-size: 16px;
   background-color: #444;
   color: #fff;
   width: 100%;
-}
-@media only screen and (min-width: 600px) {
-  /* For tablets: */
-    header {
-    font-size:10px;
-  }
 }
 @media only screen and (min-width: 768px) {
   /* For desktop: */
     header {
     font-size: 14px;
   }
-}
-
-/* for javascript only */
-.js-quiz-container {
 }
 
 .banner {
@@ -71,60 +57,75 @@ header{
 	justify-content: space-around;
 }
 
-/* for javascript only, may not be needed */
-.js-question-out-of {
-}
-.js-score {
-}
-
-.message {
+.message h2 {
   font-weight: bold;
   font-size: 40px;
   color: #444;
   margin-top: 40px;
 }
 
+.explanation {
+	font-size: 16px;
+  background-color: lightyellow;
+  margin-top: 20px;
+  padding: 10px;
+}
+.explanation:empty {
+    display:none;
+}
+
 fieldset {
     border: 0;
 }
 
-.question {
+fieldset {
   font-weight: bold;
   color: #444;
   margin-top: 40px;
 }
-.question label {
-  color: #000;
+.answers label {
+	display: flex;
+  	color: #000;
+  	padding: 10px;
+}
+.answers label:hover {
+  	background-color: lightcyan;
 }
 
 /* ul */
 .answers {
   list-style: none;
-  margin: 0px auto;
-  padding: 0px 40px;
   font-size: 18px;
-  width: 70%;
-  text-align:left;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
 }
 
 .answers li {
-  margin-top: 5px auto;
-  padding: 10px;
-}
-.answers input[type="radio"] {
-  margin-right: 10px;
+  	text-align: left;
+  	margin-top: 20px;
 }
 
+.answers input[type="radio"] {
+  	margin-right: 20px;
+}
+
+
 .warning {
-position: relative;
-left: 5px;
-font-variant: small-caps;
+	font-variant: small-caps;
+	margin-left: 20px;
 }
 .correct-answer {
 	color: #008000;
 }
-.your-answer {
+.correct-answer::after {
+	content: 'Correct Answer';
+}
+.user-answer {
 	color: blue;
+}
+.user-answer::after {
+	content: 'Your Answer';
 }
 button {
  	font-family: 'Roboto', sans-serif;

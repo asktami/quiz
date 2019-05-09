@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Shopping List</title>
+		<title>Quiz</title>
 
 		<link
 			rel="stylesheet"
@@ -15,57 +15,26 @@
 		<link rel="stylesheet" href="style.css" />
 	</head>
 	<body>
-	<header>
-		<h1>Javascript Quiz</h1>
-	</header>
-	
-	<main>
-	<img class="logo" src="javascript-logo.svg" alt="logo">
-	
-		<div class="js-quiz-container">
-		
-		<div class="banner">
-			<span class="js-question-out-of">Question # out of #</span>
-			<span class="js-score">X correct out of Y</span>
-		</div>
+		<header>
+			<h1>Javascript Quiz</h1>
+		</header>
 		
 		
-		<h2 class="message">Welcome to the Javascript Quiz</h2>
+		<main>
+		<img class="logo" src="javascript-logo.svg" alt="logo" />
 		
-		 <fieldset class="question">
-			<legend>
-			  <h3><span>#. </span>Question Question Question Question Question Question Question</h3>
-			</legend>
+			<div class="message">
+				<h2>Welcome to the Javascript Quiz</h2>
+				<button type="button" class="start">Start Quiz</button>
+			</div>
 
+			<div class="js-quiz-container"></div>
+		</main>
 
-			<form id="quiz-form" name="quiz-form" action="index.html" method="post">
-			
-			<ul class="answers">
-			
-				<li>
-             	<input type="radio" name="answer" id="question_1"  value="answer_letter">
-             	<label for="question_1">answer-letter-1:  answer_text-1>answer-letter-1:  answer_text-1 <span class="warning correct-answer">Correct Answer</span></label>
-             	</li>
-           		
-           		<li>
-             	<input type="radio" name="answer" id="question_2" value="answer_letter">
-             	<label for="question_2">answer-letter-2:  answer_text-2 <span class="warning your-answer">Your Answer</span></label>
-           		</li>
-           		
-			</ul>
-			
-			 <button class="submit" type="submit">Submit</button>
-			
-			</form>
-		</fieldset>
-		</div>
-	</main>
-	
-	<footer>
-	Created by Tami Williams.
-	Find out more about me at <a href="http://www.asktami.com" target="_blank">www.asktami.com</a>
-	</footer>
-	
+		<footer>
+			Created by Tami Williams. Find out more about me at
+			<a href="http://www.asktami.com" target="_blank">www.asktami.com</a>
+		</footer>
 
 		<!-- jQuery CDN -->
 		<script
