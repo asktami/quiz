@@ -23,6 +23,9 @@ footer {
   background-color: #444;
   color: #fff;
 }
+.quiz-container {
+	padding-bottom: 40px;
+}
 a {
   color: #fff;
 }
@@ -30,7 +33,6 @@ a {
 /* responsive image - media queries */
 .logo {
   max-width: 15%;
-  height: auto;
   position: fixed;
   bottom: 30px;
   left: 0;
@@ -54,19 +56,25 @@ header h1{
 
 .banner {
 	font-size: 16px;
-	margin-top: 20px;
   	display: flex;
   	flex-direction: row;
 	justify-content: space-around;
 }
 
-.message > h2, #message > h2{
+.message{
   font-weight: bold;
-  font-size: 60px;
-  color: #444;
-  margin-top: 40px;
 }
-
+.message > h2{;
+  color: #444;
+  font-size: 60px;
+}
+.message > h3{;
+  color: blue;
+  font-size: 40px;
+}
+span.message {
+	padding-left: 20px;
+	}
 .explanation {
 	font-size: 16px;
   background-color: lightyellow;
@@ -141,7 +149,7 @@ button {
 	border-radius: 3px;
 	padding: 20px;
 	cursor: pointer;
-	margin: 40px auto; 
+	margin: 20px auto; 
 }
 button:hover{
 	background-color: gold;
