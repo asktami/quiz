@@ -23,6 +23,9 @@ footer {
   background-color: #444;
   color: #fff;
 }
+a {
+  color: #fff;
+}
 
 /* responsive image - media queries */
 .logo {

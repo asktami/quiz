@@ -124,7 +124,7 @@ const myQuestions = [
 
 /*
 // Pseudocode
-1 - DEFAULT: see the start page with FIRST PAGE message & the START button
+1 - DEFAULT: see the FIRST PAGE message & the START button
 
 2 - user clicks START button = render the quiz question to the screen & score & page X of Y and SHOW the SUBMIT button
 
@@ -135,10 +135,12 @@ const myQuestions = [
 5 - user clicks CONTINUE button on LAST page, see LAST PAGE message with RESTART button & & score and SHOW the RESTART button
 
 6 - user clicks RESTART button =  see DEFAULT (#1)
+
+NEED TO HANDLE START, SUBMIT, CONTINUE, and RESTART events
 */
 
 // QUESTION - how to do: when 1st load page need
-// $('#message h2').html('Welcome to the Javascript Quiz');
+// $('.js-message h2').html('Welcome to the Javascript Quiz');
 
 // keep track of questionIndex
 let questionIndex = 0;
@@ -149,8 +151,8 @@ let numCorrect = 0;
 // start quiz
 // load question index 0
 function startQuiz() {
-	$('main').on('click', '.start', function(event) {
-		$('#message').hide();
+	$('.js-message').on('click', '.start', function(event) {
+		$('.js-message').hide();
 		renderQuestion('submit');
 	});
 }
@@ -159,22 +161,21 @@ function startQuiz() {
 // reload page to restart quiz
 
 // **QUESTION = why doesn't the RESTART button work?
-// MAIN _is_ in the DOM when the page 1st loads
+// MAIN/js-message _is_ in the DOM when the page 1st loads
 function restartQuiz() {
-	$('main').on('click', '.restart', function(event) {
-		location.reload(true);
+	$('.js-container').on('click', '.restart', function(event) {
+	 window.location.reload(true);
 	});
 }
 
 
 
-// **QUESTION - why do I get on last page: Form submission canceled because the form is not connected AFTER click CONTINUE on last RESULTS page IF I use main???
-// **QUESTION - why does #message not work, but main works??? (except see above)
-// tried div#g, #message AND replaceWith
+// **QUESTION - why do I get on last page: Form submission canceled because the form is not connected AFTER click CONTINUE on last RESULTS page IF I use .js-message???
+// **QUESTION - why does js-message not work, but main works??? (except see above)
 
 function renderLastPage() {
 alert('renderLastPage');
-		$('main').html(`
+		$('.js-message').html(`
       <h2>Final Score: Score: ${numCorrect} out of ${myQuestions.length}</h2>
       <button type="button" class="restart">Restart Quiz</button>`);
 }
@@ -184,11 +185,10 @@ alert('renderLastPage');
 // increment questionIndex
 // render next question
 function renderNextQuestion() {
-	$('main').on('click', '.continue', function(event) {
+	$('.js-container').on('click', '.continue', function(event) {
 		// if (questionIndex === myQuestions.length-1) {
 		if (questionIndex === 0) {
 		
-		alert('lastpage');
 			// show last page with last page text & restart button
 			renderLastPage();
 			
@@ -242,7 +242,7 @@ function renderQuestion(btn = 'start', userAnswer = '') {
 	// if answer was submitted, disable changing answer/selecting another radio button
 	
 	if(btn === 'start'){
-		$('#message').html(`
+		$('.js-message').html(`
       <h2>Welcome to the Javascript Quiz</h2>
       <button type="button" class="start">Start Quiz</button>`);
       }
