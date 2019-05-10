@@ -136,11 +136,9 @@ const myQuestions = [
 
 6 - user clicks RESTART button =  see DEFAULT (#1)
 
-NEED TO HANDLE START, SUBMIT, CONTINUE, and RESTART events
+NEED TO HANDLE START, SUBMIT (user answer), CONTINUE (after see results), and RESTART events
+ADDED REVIEW - button to see all questions with user answer and correct answer at end of quiz
 */
-
-// QUESTION - how to do: when 1st load page need
-// $('.js-message h2').html('Welcome to the Javascript Quiz');
 
 // keep track of questionIndex
 let questionIndex = 0;
@@ -148,54 +146,135 @@ let questionIndex = 0;
 // keep track of all correct answers
 let numCorrect = 0;
 
-// start quiz
-// load question index 0
+// ALTERNATIVE for restart
+// save the DOM original state for restart
+// let originalDOM = document.body.innerHTML;
+
+
+function showDefaultMessage(){
+	$('.js-message').html(`
+      <h2>Welcome<br>to the<br>Javascript Quiz</h2>
+      <button type="button" class="start">Start Quiz</button>`);
+}
+
+function hideMessage(){
+	$('.js-message').hide();
+}
+
 function startQuiz() {
-	$('.js-message').on('click', '.start', function(event) {
+	$('.js-container').on('click', '.start', function(event) {
 		$('.js-message').hide();
+
+		$('.js-quiz-container').show();
 		renderQuestion('submit');
 	});
+
+	// console.log('`startQuiz` ran');
 }
 
-// user clicks restart
-// reload page to restart quiz
-
-// **QUESTION = why doesn't the RESTART button work?
-// MAIN/js-message _is_ in the DOM when the page 1st loads
 function restartQuiz() {
+// user clicks restart
+// reset questionIndex & correct answer counter
+// show the default message
+
 	$('.js-container').on('click', '.restart', function(event) {
-	 window.location.reload(true);
+	
+	// reset questionIndex
+		questionIndex = 0;
+		// reset correct answers
+		numCorrect = 0;
+		
+		// show initial message
+		showDefaultMessage();
+		
+		
+	// hide the last question & review button (from the final page)
+	$('.js-quiz-container').hide();
+	$('.js-review').hide();
+
+		// ALTERNATIVE
+		// restore to DOM original state
+		// document.body.innerHTML = originalDOM;
+		
+	   // Another ALTERNATIVE:
+	   // window.location.reload();
+	
+		// console.log('`restartQuiz` ran');
 	});
 }
 
+function reviewResults() {
+// loop thru myQuestions array of objects
+// for each object, print question and answers
+// flag userAnswer and correctAnswer
 
-
-// **QUESTION - why do I get on last page: Form submission canceled because the form is not connected AFTER click CONTINUE on last RESULTS page IF I use .js-message???
-// **QUESTION - why does js-message not work, but main works??? (except see above)
+	$('.js-container').on('click', '.review', function(event) {
+	
+		// store the HTML output
+		let reviewOutput = [];
+		
+		for (let i = 0; i < myQuestions.length; i++) {
+		// generateQuestionHTML(btn, userAnswer, qIndex)
+		let q = generateQuestionHTML('review', myQuestions[i].userAnswer, i);
+		
+		reviewOutput.push(q);
+		}
+		
+		// insert the final HTML into the DOM
+		 $('.js-quiz-container').show().html(reviewOutput.join(''));
+		 
+		// hide the review results button
+		$('.js-review').hide();
+		
+	// console.log('`reviewResults` ran');
+	});
+}
 
 function renderLastPage() {
-alert('renderLastPage');
-		$('.js-message').html(`
-      <h2>Final Score: Score: ${numCorrect} out of ${myQuestions.length}</h2>
-      <button type="button" class="restart">Restart Quiz</button>`);
+
+	$('.js-message').show().html(`
+      <h2>You finished the quiz!</h2>
+      <h3>Final Score:<br>${numCorrect} out of ${myQuestions.length}<br>
+      ${(numCorrect/myQuestions.length) * 100}%</h3>
+	  <button type="button" class="restart">Restart Quiz</button>`);
+	  
+	
+	// hide the last question when show the final page
+	$('.js-quiz-container').hide();
+	
+	// show the review results button
+	$('.js-review').show().html(`<button type="button" class="review">Review Your Answers</button>`);
+
+
+	// load the restartQuiz function - which is triggered by the restart button created above
+	restartQuiz();
+	
+	// load the reviewResults function
+	reviewResults();
+
+	// console.log('`renderLastPage` ran');
 }
 
 
-// user clicks continue from the results screen
+function renderNextQuestion() {
+// user clicks continue from the results screen which submits that form
 // increment questionIndex
 // render next question
-function renderNextQuestion() {
-	$('.js-container').on('click', '.continue', function(event) {
-		// if (questionIndex === myQuestions.length-1) {
-		if (questionIndex === 0) {
-		
-			// show last page with last page text & restart button
+
+	$('.js-quiz-container').on('submit', '#continue-form', function(event) {
+		// stop the default form submission behavior
+		event.preventDefault();
+
+		if (questionIndex === myQuestions.length - 1) {
+			// show last page text & restart button & review button
 			renderLastPage();
-			
 		} else {
+			// show next page with submit button
 			questionIndex += 1;
 			renderQuestion('submit');
 		}
+
+		// console.log('`renderNextQuestion` ran');
 	});
 }
 
@@ -204,71 +283,52 @@ function renderResults() {
 	// show question & answers again with results (correct-answer & user-answer)
 	// disable input radio buttons
 
-	// using MAIN on click submit ignores REQUIRED
-	// $('main').on('click', '.submit', function(event) {
-
-	// using this DOES NOT WORK, WHY?
-	// ANSWER b/c #submit-form' does not exist when page 1st loads
-	//$('#submit-form').on('submit', function (event) {
-
 	$('.js-quiz-container').on('submit', '#submit-form', function(event) {
 		// stop the default form submission behavior
 		event.preventDefault();
 
 		// find submitted answer
-		// used required so user can not submit form without selecting an answerOption
 		let userAnswer = $("input[name='answer']:checked").val();
 
 		// save answer submitted as new property on currentQuestion
 		let currentQuestionObj = myQuestions[questionIndex];
 		currentQuestionObj.userAnswer = userAnswer;
-
+		
 		// update numCorrect/js-score
 		if (currentQuestionObj.correctAnswer === userAnswer) {
 			numCorrect += 1;
 		}
 
-		console.log('`renderResults` ran');
+		// console.log('`renderResults` ran');
 
 		// render results with continue button
 		renderQuestion('continue', userAnswer);
 	});
 }
 
-
-function renderQuestion(btn = 'start', userAnswer = '') {
-	// only show question and answerOptions if NOT on START page
-	// if answer was submitted, show which was answer was submitted
-	// if answer was submitted, disable changing answer/selecting another radio button
-	
-	if(btn === 'start'){
-		$('.js-message').html(`
-      <h2>Welcome to the Javascript Quiz</h2>
-      <button type="button" class="start">Start Quiz</button>`);
-      }
-            
-	if (btn !== 'start') {
+function generateQuestionHTML(btn, userAnswer, qIndex) {
 		// store the HTML output
 		let output = [];
 
 		// for this question store the list of answer options
-		let currentQuestion = myQuestions[questionIndex];
+		let currentQuestion = myQuestions[qIndex];
 
 		const answerOptions = [];
 		let correctAnswerClass = '';
 		let userAnswerClass = '';
-		let disabled = btn === 'continue' ? 'disabled' : '';
+		let disabled = (btn === 'continue' || btn === 'review') ? 'disabled' : '';
 
 		let checked = '';
 
 		let explanation = userAnswer !== '' ? currentQuestion.explanation : '';
 
 		// for each of the possible answers add an HTML radio button
+		// use required on inputs so user can not submit form without selecting an answerOption
 		// add correct-answer class to answerOptions
 		// add user-answer class to answerOptions
 		for (let option in currentQuestion.answers) {
 			// only when showing results
-			if (btn === 'continue') {
+			if (btn === 'continue' || btn === 'review') {
 				if (option === currentQuestion.correctAnswer) {
 					correctAnswerClass = 'correct-answer';
 				} else {
@@ -292,21 +352,22 @@ function renderQuestion(btn = 'start', userAnswer = '') {
 				}<span class="warning ${userAnswerClass}"></span><span class="warning ${correctAnswerClass}"></span></label>`
 			);
 		}
-
-		let banner = `
+		
+		let banner = (btn === 'submit' || btn === 'continue') ? `
 		<div class="banner">
-			<span class="js-questionsAnswered">Question: ${questionIndex + 1} out of ${
+			<span class="js-questionsAnswered">Question: ${qIndex + 1} out of ${
 			myQuestions.length
 		}</span>
 			<span class="js-score">Score: ${numCorrect} out of ${myQuestions.length}</span>
-		</div>`;
-
-		let form = `<form id="${btn}-form" name="quiz-form" action="index.html" method="post">`;
-
-		let legend = `<legend>
-			  <h3><span>${questionIndex + 1}.</span> ${currentQuestion.question}</h3>
-			</legend>`;
-
+		</div>` : '';
+		
+		
+		let form = (btn === 'submit' || btn === 'continue') ? `<form id="${btn}-form" name="quiz-form" action="index.html" method="post">` : '';
+		
+		
+		let button = (btn === 'submit' || btn === 'continue') ? `<button class="${btn}" type="submit">${btn}</button>` : '' ;
+		
+		
 		// add this question and its answers to the output
 		output.push(
 			`${banner}
@@ -314,29 +375,46 @@ function renderQuestion(btn = 'start', userAnswer = '') {
 			 ${form}
 
 			<fieldset>
-			 ${legend}
+			<legend>
+			  <h3><span>${qIndex + 1}.</span> ${currentQuestion.question}</h3>
+			</legend>
 
 			<ul class="answers">
-			<li data-question-id="${questionIndex}">
+			<li data-question-id="${qIndex}">
 				${answerOptions.join('')}
 			</li>
 			</ul>
 
 			<div class="explanation">${explanation}</div>
-
-			<button class="${btn}" type="submit">${btn}</button>
+			${button}
+			
 		</fieldset>
 		</form>`
 		);
-
-		// insert the final HTML into the DOM
-		$('.js-quiz-container').html(output.join(''));
-	}
-	console.log(`renderQuestion(${btn}) ran`);
+		
+		return output; 
+		
+	// console.log(`generateQuestionHTML(${btn}, ${userAnswer, ${qIndex}) ran`);s
 }
 
-// this function is our callback when the page loads. it's responsible for initially rendering the quiz, and activating our individual functions that handle  clicks on the "start", "submit", "continue" and "restart" buttons.
+function renderQuestion(btn = 'start', userAnswer = '', qIndex = questionIndex ) {
+	// only show question and answerOptions if NOT on START page
+	// if answer was submitted, show which was answer was submitted
+	// if answer was submitted, disable changing answer/selecting another radio button
+
+	if (btn === 'start') {
+		showDefaultMessage();
+	} else {
+		// insert the final question HTML into the DOM
+		$('.js-quiz-container').html(generateQuestionHTML(btn, userAnswer, qIndex));
+	}
+
+	// console.log(`renderQuestion(${btn}) ran`);
+}
+
 function processQuiz() {
+// this function is our callback when the page loads. it's responsible for initially rendering the quiz, and activating the individual functions that handle  clicks on the "start", "submit", "continue", "restart" and "review" buttons.
+
 	startQuiz();
 	renderQuestion();
 	renderResults();
