@@ -15,17 +15,20 @@
 		<link rel="stylesheet" href="style.css" />
 	</head>
 	<body>
-		<header>
+		<header role="header">
 			<h1>Javascript Quiz</h1>
 		</header>
 		
 		<img class="logo" src="javascript-logo.svg" alt="logo" />
 		
-		<main class="js-container">
-			<span class="message js-message"></span><span class="message js-review"></span>
-			<div class="quiz-container js-quiz-container"></div>
+		<main role="content" class="js-container">
+		
+			<span role="welcomemessage" class="message js-message"></span>
+			<span role="reviewbtn" class="message js-review"></span>
+			<div role="quizcontainer" class="quiz-container js-quiz-container"></div>
 		</main>
-		<footer>
+		
+		<footer role="footer">
 			Created by Tami Williams. Find out more about me at
 			<a href="http://www.asktami.com" target="_blank">www.asktami.com</a>
 		</footer>

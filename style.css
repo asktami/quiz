@@ -99,6 +99,7 @@ fieldset {
 	display: flex;
 	color: #000;
 	padding: 10px;
+	cursor: pointer;
 }
 .answers label:hover {
 	background-color: lightcyan;
