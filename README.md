@@ -1,9 +1,8 @@
-# jQuery Quiz Challenge
+# jQuery Quiz
 
 [View Live](https://asktami.github.io/quiz/)
 
-This repo contains files for the *Quiz App* challenge.
-
+![jQuery Quiz screenshot](https://github.com/asktami/quiz/blob/master/Screenshot.png)
 
 User experience requirements
 
