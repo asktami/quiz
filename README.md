@@ -1,5 +1,7 @@
 # jQuery Quiz
 
+A mobile-first, responsive single page quiz application, fully usable by keyboard, created with semantic HTML, CSS and jQuery.
+
 [View Live](https://asktami.github.io/quiz/)
 
 ![jQuery Quiz screenshot](https://github.com/asktami/quiz/blob/master/Screenshot.png)
