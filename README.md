@@ -6,7 +6,7 @@ A mobile-first, responsive single page quiz application, fully usable by keyboar
 
 ![jQuery Quiz screenshot](https://github.com/asktami/quiz/blob/master/Screenshot.png)
 
-User experience requirements
+## User experience requirements
 
 - The starting screen should have a button that users can click to start the quiz.
 
@@ -27,7 +27,7 @@ User experience requirements
 - Users should be able to start a new quiz.
 
 
-Technical requirements
+## Technical requirements
 
 Your quiz app must:
 
